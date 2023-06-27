@@ -4,7 +4,6 @@ import {
   MpPanSpatialMapHeaderDcd,
   MpPanSpatialMapSideMenuDcd,
   MpPanSpatialMapToolListButtonDcd,
-  MpToolbox,
 } from './components'
 
 import {
@@ -13,6 +12,7 @@ import {
   MpPanSpatialMapClassicLeftDcd,
   MpPanSpatialMapClassicRightDcd,
   MpPanSpatialMapClassicToolListDcd,
+  MpToolbox,
 } from './themes'
 
 const components = [

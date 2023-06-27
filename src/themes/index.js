@@ -3,3 +3,4 @@ export { default as MpPanSpatialMapClassicHeaderDcd } from './classic-theme-dcd/
 export { default as MpPanSpatialMapClassicLeftDcd } from './classic-theme-dcd/components/ClassicLeft/ClassicLeft.vue'
 export { default as MpPanSpatialMapClassicRightDcd } from './classic-theme-dcd/components/ClassicRight/ClassicRight.vue'
 export { default as MpPanSpatialMapClassicToolListDcd } from './classic-theme-dcd/components/ClassicToolList/ClassicToolList.vue'
+export { default as MpToolbox } from './classic-theme-dcd/widgets/toolbox/toolbox.vue'

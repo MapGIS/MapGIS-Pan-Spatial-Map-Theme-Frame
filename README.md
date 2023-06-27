@@ -9,7 +9,6 @@
       |── SidePanel                         # 左右面板组件
       |── ToolbarButton                     # 工具条按钮组件
       |── ToolbarCard                       # 工具条面板
-      |── ToolBox                           # 工具盒
       |── index.js                          # components入口文件
    |── theme                                # 主题样式
       |── antd                              # antd样式
@@ -24,6 +23,8 @@
             |── ClassicLeft                 # dcd主题左侧组件
             |── ClassicRight                # dcd主题右侧组件
             |── ClassicToolList             # dcd主题工具列表组件
+         |── widgets                        # 主题独有的微件集
+            |── toolbox                     # 工具盒
          |── classic-theme.vue              # dcd主题主组件
       |── index.js                          # themes入口文件
    |── index.js                             # 项目入口文件
