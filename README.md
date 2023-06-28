@@ -17,15 +17,15 @@
       |── index.less                        # 样式入口文件
       |── theme.less                        # 样式入口文件
    |── themes                               # 主题
-      |── classic-theme-dcd                 # dcd主题
-         |── components                     # dcd主题组件
-            |── ClassicHeader               # dcd主题顶部组件
-            |── ClassicLeft                 # dcd主题左侧组件
-            |── ClassicRight                # dcd主题右侧组件
-            |── ClassicToolList             # dcd主题工具列表组件
+      |── example-theme                     # 示例主题
+         |── components                     # example主题组件
+            |── ExampleHeader               # example主题顶部组件
+            |── ExampleLeft                 # example主题左侧组件
+            |── ExampleRight                # example主题右侧组件
+            |── ExampleToolList             # example主题工具列表组件
          |── widgets                        # 主题独有的微件集
             |── toolbox                     # 工具盒
-         |── classic-theme.vue              # dcd主题主组件
+         |── example-theme.vue              # example主题主组件
       |── index.js                          # themes入口文件
    |── index.js                             # 项目入口文件
    |── index.scss                           # 项目样式文件
