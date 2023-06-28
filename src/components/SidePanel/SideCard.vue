@@ -1,5 +1,5 @@
 <template>
-  <mp-pan-spatial-map-side-example-window
+  <mp-pan-spatial-map-example-side-window
     ref="sideWindow"
     :title="widgetInfo.label"
     :icon="widgetInfo.icon"
@@ -18,7 +18,7 @@
         @update-widget-state="$emit('update-widget-state', $event)"
       />
     </template>
-  </mp-pan-spatial-map-side-example-window>
+  </mp-pan-spatial-map-example-side-window>
 </template>
 
 <script>
