@@ -1,5 +1,5 @@
 <template>
-  <mp-pan-spatial-map-side-window-dcd
+  <mp-pan-spatial-map-side-example-window
     ref="sideWindow"
     :title="widgetInfo.label"
     :icon="widgetInfo.icon"
@@ -18,16 +18,16 @@
         @update-widget-state="$emit('update-widget-state', $event)"
       />
     </template>
-  </mp-pan-spatial-map-side-window-dcd>
+  </mp-pan-spatial-map-side-example-window>
 </template>
 
 <script>
 import { WidgetInfoMixin } from '@mapgis/web-app-framework'
-import MpPanSpatialMapSideWindowDcd from './SideWindow.vue'
+import MpPanSpatialMapExampleSideWindow from './SideWindow.vue'
 
 export default {
-  name: 'MpPanSpatialMapSideCardDcd',
-  components: { MpPanSpatialMapSideWindowDcd },
+  name: 'MpPanSpatialMapExampleSideCard',
+  components: { MpPanSpatialMapExampleSideWindow },
   mixins: [WidgetInfoMixin],
   props: {
     visible: { type: Boolean, default: true },

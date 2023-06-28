@@ -1,31 +1,31 @@
 import {
   setExternalLayoutElementComponents,
-  MpPanSpatialMapFooter,
-  MpPanSpatialMapHeaderDcd,
-  MpPanSpatialMapSideMenuDcd,
-  MpPanSpatialMapToolListButtonDcd,
+  MpPanSpatialMapExampleFooter,
+  MpPanSpatialMapExampleHeader,
+  MpPanSpatialMapExampleSideMenu,
+  MpPanSpatialMapExampleToolListButton,
 } from './components'
 
 import {
-  MpPanSpatialMapClassicThemeExample,
-  MpPanSpatialMapClassicHeaderDcd,
-  MpPanSpatialMapClassicLeftDcd,
-  MpPanSpatialMapClassicRightDcd,
-  MpPanSpatialMapClassicToolListDcd,
-  MpToolbox,
+  MpPanSpatialMapExampleTheme,
+  MpPanSpatialMapExampleThemeHeader,
+  MpPanSpatialMapExampleThemeLeft,
+  MpPanSpatialMapExampleThemeRight,
+  MpPanSpatialMapExampleThemeToolList,
+  ExampleToolbox,
 } from './themes'
 
 const components = [
-  MpPanSpatialMapFooter,
-  MpPanSpatialMapHeaderDcd,
-  MpPanSpatialMapSideMenuDcd,
-  MpPanSpatialMapToolListButtonDcd,
-  MpPanSpatialMapClassicThemeExample,
-  MpPanSpatialMapClassicHeaderDcd,
-  MpPanSpatialMapClassicLeftDcd,
-  MpPanSpatialMapClassicRightDcd,
-  MpPanSpatialMapClassicToolListDcd,
-  MpToolbox,
+  MpPanSpatialMapExampleFooter,
+  MpPanSpatialMapExampleHeader,
+  MpPanSpatialMapExampleSideMenu,
+  MpPanSpatialMapExampleToolListButton,
+  MpPanSpatialMapExampleTheme,
+  MpPanSpatialMapExampleThemeHeader,
+  MpPanSpatialMapExampleThemeLeft,
+  MpPanSpatialMapExampleThemeRight,
+  MpPanSpatialMapExampleThemeToolList,
+  ExampleToolbox,
 ]
 
 const install = (Vue, opts = {}) => {

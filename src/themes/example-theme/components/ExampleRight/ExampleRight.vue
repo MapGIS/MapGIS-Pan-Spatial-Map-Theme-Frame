@@ -1,5 +1,5 @@
 <template>
-  <mp-pan-spatial-map-side-menu-dcd
+  <mp-pan-spatial-map-example-side-menu
     :theme-mode="sideTheme"
     :collapsible="false"
     :collapsed="true"
@@ -8,18 +8,18 @@
     :widgetStructure="widgetStructure"
     :panel="panel"
     ref="sideMenu"
-    class="right_panel_menu_dcd"
+    class="right_panel_menu_example"
   />
 </template>
 
 <script>
 import { ThemeContentMixin } from '@mapgis/web-app-framework'
 import { mapState } from 'vuex'
-import MpPanSpatialMapSideMenuDcd from '../../../../components/SideMenu/SideMenu.vue'
+import MpPanSpatialMapExampleSideMenu from '../../../../components/SideMenu/SideMenu.vue'
 
 export default {
-  name: 'MpPanSpatialMapClassicRightDcd',
-  components: { MpPanSpatialMapSideMenuDcd },
+  name: 'MpPanSpatialMapExampleThemeRight',
+  components: { MpPanSpatialMapExampleSideMenu },
   mixins: [ThemeContentMixin],
   computed: {
     ...mapState('setting', { themeMode: (state) => state.theme.mode }),

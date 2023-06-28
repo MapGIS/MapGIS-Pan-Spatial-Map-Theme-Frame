@@ -1,7 +1,7 @@
 <template>
   <div class="mp-side-widget-panel">
     <div :style="{ display: 'inline-block', width: `${stuffWidth}px` }"></div>
-    <mp-pan-spatial-map-side-card-dcd
+    <mp-pan-spatial-map-example-side-card
       v-for="widget in widgetsInPanel('content')"
       :key="widget.uri"
       :ref="widget.id"
@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import { PanelMixin } from "@mapgis/web-app-framework";
-import MpPanSpatialMapSideCardDcd from "./SideCard.vue";
+import { PanelMixin } from '@mapgis/web-app-framework'
+import MpPanSpatialMapExampleSideCard from './SideCard.vue'
 
 export default {
   // 组件名称，统一以"Mp"开头
-  name: "MpPanSpatialMapSidePanelDcd",
-  components: { MpPanSpatialMapSideCardDcd },
+  name: 'MpPanSpatialMapExampleSidePanelExample',
+  components: { MpPanSpatialMapExampleSideCard },
   mixins: [PanelMixin],
   props: {
     maxWidth: { type: [Number, Function] },
@@ -31,26 +31,26 @@ export default {
   computed: {
     stuffWidth() {
       const visibleWidget = this.widgets.find((widget) =>
-        this.isWidgetVisible(widget, "content")
-      );
+        this.isWidgetVisible(widget, 'content')
+      )
 
       if (
         visibleWidget &&
         this.$refs[visibleWidget.id] &&
         this.$refs[visibleWidget.id][0]
       ) {
-        return this.$refs[visibleWidget.id][0].$refs.sideWindow.currentWidth;
+        return this.$refs[visibleWidget.id][0].$refs.sideWindow.currentWidth
       }
 
-      return 0;
+      return 0
     },
   },
   methods: {
     onPanelClick(widget) {
-      this.activateWidget(widget);
+      this.activateWidget(widget)
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,7 @@
 <template>
   <div class="toollist-content">
     <template v-for="widget in widgets">
-      <tool-list-button-dcd
+      <mp-pan-spatial-map-example-tool-list-button
         :widget="widget"
         :key="widget.id"
         :active="isActiveWidget(widget)"
@@ -17,11 +17,11 @@ import {
   WidgetManager,
   WidgetState,
 } from '@mapgis/web-app-framework'
-import ToolListButtonDcd from '../../../../components/ToolbarButton/ToolListButton.vue'
+import MpPanSpatialMapExampleToolListButton from '../../../../components/ToolbarButton/ToolListButton.vue'
 
 export default {
-  name: 'MpPanSpatialMapClassicToolListDcd',
-  components: { ToolListButtonDcd },
+  name: 'MpPanSpatialMapExampleThemeToolList',
+  components: { MpPanSpatialMapExampleToolListButton },
   mixins: [ThemeContentMixin],
   methods: {
     onWidgetClick(widget) {

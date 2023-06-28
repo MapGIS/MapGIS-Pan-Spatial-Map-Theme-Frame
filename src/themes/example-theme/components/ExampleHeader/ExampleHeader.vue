@@ -1,5 +1,5 @@
 <template>
-  <mp-pan-spatial-map-header-dcd :theme-mode="themeMode">
+  <mp-pan-spatial-map-example-header :theme-mode="themeMode">
     <div slot="header-content" class="header-menu">
       <!-- ul -->
       <mapgis-ui-menu
@@ -24,55 +24,55 @@
         class="header-item"
       />
     </template>
-  </mp-pan-spatial-map-header-dcd>
+  </mp-pan-spatial-map-example-header>
 </template>
 
 <script>
-import { ThemeContentMixin, WidgetManager } from "@mapgis/web-app-framework";
-import { mapState } from "vuex";
+import { ThemeContentMixin, WidgetManager } from '@mapgis/web-app-framework'
+import { mapState } from 'vuex'
 import {
-  MpPanSpatialMapHeaderDcd,
+  MpPanSpatialMapExampleHeader,
   isExternalLayoutElementComponentExist,
-} from "../../../../components";
+} from '../../../../components'
 
 export default {
-  name: "MpPanSpatialMapClassicHeaderDcd",
+  name: 'MpPanSpatialMapExampleThemeHeader',
   components: {
-    MpPanSpatialMapHeaderDcd,
+    MpPanSpatialMapExampleHeader,
   },
   mixins: [ThemeContentMixin],
   data() {
     return {
       aboutWindowVisible: false,
-    };
+    }
   },
   computed: {
-    ...mapState("setting", { themeMode: (state) => state.theme.mode }),
+    ...mapState('setting', { themeMode: (state) => state.theme.mode }),
     menuTheme() {
-      return this.themeMode == "light" ? this.themeMode : "dark";
+      return this.themeMode == 'light' ? this.themeMode : 'dark'
     },
     isHeaderAvatarComponentExist() {
       return isExternalLayoutElementComponentExist(
-        "MpPanSpatialMapHeaderAvatar"
-      );
+        'MpPanSpatialMapHeaderAvatar'
+      )
     },
     isAboutComponentExist() {
-      return isExternalLayoutElementComponentExist("MpPanSpatialMapAbout");
+      return isExternalLayoutElementComponentExist('MpPanSpatialMapAbout')
     },
   },
   methods: {
     onSelect({ key }) {
       WidgetManager.getInstance().triggerWidgetOpen(
         this.widgets.find((val) => {
-          return val.id === key;
+          return val.id === key
         })
-      );
+      )
     },
     onShowAboutInfo() {
-      this.aboutWindowVisible = true;
+      this.aboutWindowVisible = true
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

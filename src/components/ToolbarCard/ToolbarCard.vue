@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { WidgetInfoMixin } from "@mapgis/web-app-framework";
+import { WidgetInfoMixin } from '@mapgis/web-app-framework'
 
 export default {
-  name: "MpPanSpatialMapToolbarCard",
+  name: 'MpPanSpatialMapExampleToolbarCard',
   mixins: [WidgetInfoMixin],
-};
+}
 </script>
 
 <style lang="scss" scoped>

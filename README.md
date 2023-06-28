@@ -66,29 +66,37 @@ yarn build
 
 # 运行程序
 
-1、在 mapgis-pan-spatial-map-mock-server 目录下执行 yarn mock 命令
+1、在 mapgis-pan-spatial-map-mock-server/mock/data/themes 目录下新建对应的主题配置文件。
+
+![](./docs/images/theme9.png)
+
+2、在 mapgis-pan-spatial-map-mock-server/mock/data/app.json 中配置对象的主题信息。
+
+![](./docs/images/theme10.png)
+
+3、在 mapgis-pan-spatial-map-mock-server 目录下执行 yarn mock 命令
 
 ```
 yarn mock
 ```
 
-2、在 mapgis-pan-spatial-map-theme-frame 目录下执行 yarn link 命令
+4、在 mapgis-pan-spatial-map-theme-frame 目录下执行 yarn link 命令
 
 ```
 yarn link
 ```
 
-3、在 mapgis-pan-spatial-map-app 目录下执行 yarn link @mapgis/mapgis-pan-spatial-map-theme-frame
+5、在 mapgis-pan-spatial-map-app 目录下执行 yarn link @mapgis/mapgis-pan-spatial-map-theme-frame
 
 ```
 yarn link @mapgis/mapgis-pan-spatial-map-theme-frame
 ```
 
-4、在 mapgis-pan-spatial-map-app/src/core/use.js 中引入@mapgis/mapgis-pan-spatial-map-theme-frame，并Vue.use引入的库。如果有样式文件还需引入样式文件，import '@mapgis/mapgis-pan-spatial-map-theme-frame/dist-libs/mapgis-pan-spatial-map-theme-frame.css'
+6、在 mapgis-pan-spatial-map-app/src/core/use.js 中引入@mapgis/mapgis-pan-spatial-map-theme-frame，并Vue.use引入的库。如果有样式文件还需引入样式文件，import '@mapgis/mapgis-pan-spatial-map-theme-frame/dist-libs/mapgis-pan-spatial-map-theme-frame.css'
 
 ![](./docs/images/theme2.png)
 
-5、在 mapgis-pan-spatial-map-app 目录下执行 yarn serve 命令
+7、在 mapgis-pan-spatial-map-app 目录下执行 yarn serve 命令
 
 ```
 yarn serve

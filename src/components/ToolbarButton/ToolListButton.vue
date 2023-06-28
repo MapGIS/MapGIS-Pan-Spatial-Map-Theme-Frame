@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import { WidgetInfoMixin } from "@mapgis/web-app-framework";
+import { WidgetInfoMixin } from '@mapgis/web-app-framework'
 
 export default {
-  name: "MpPanSpatialMapToolListButtonDcd",
+  name: 'MpPanSpatialMapExampleToolListButton',
   mixins: [WidgetInfoMixin],
   props: {
     active: { type: Boolean, default: false },
@@ -33,10 +33,10 @@ export default {
   methods: {
     onMyClick() {
       // this.active = true
-      this.$emit("click");
+      this.$emit('click')
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

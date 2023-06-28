@@ -52,14 +52,14 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { events, eventBus } from "@mapgis/web-app-framework";
+import { mapState } from 'vuex'
+import { events, eventBus } from '@mapgis/web-app-framework'
 
 export default {
-  name: "MpPanSpatialMapSideWindowDcd",
+  name: 'MpPanSpatialMapExampleSideWindow',
   props: {
     // 显示标题
-    title: { type: String, default: "Title" },
+    title: { type: String, default: 'Title' },
     // 显示图标
     icon: { type: String, required: false },
     // 是否显示
@@ -73,90 +73,90 @@ export default {
     // 最大宽度，支持数值和函数，函数必须返回数值
     maxWidth: { type: [Number, Function] },
     // 当前组件名称，展示数据目录中收藏夹功能使用该属性
-    component: { type: String, default: "" },
+    component: { type: String, default: '' },
   },
   data() {
     return {
       resizeWidth: this.width,
-    };
+    }
   },
   computed: {
-    ...mapState("setting", ["theme"]),
+    ...mapState('setting', ['theme']),
     themeMode() {
-      return this.theme.mode;
+      return this.theme.mode
     },
     // 同步属性visible
     syncedVisible: {
       get() {
-        return this.visible;
+        return this.visible
       },
       set(value) {
-        this.$emit("update:visible", value);
+        this.$emit('update:visible', value)
       },
     },
     currentWidth() {
       if (this.isFullScreen) {
-        const width = this.getMaxWidth();
+        const width = this.getMaxWidth()
         if (width) {
-          return width;
+          return width
         }
       }
 
-      return this.resizeWidth;
+      return this.resizeWidth
     },
     bodyStyle() {
       return {
-        height: "calc(100% - 36px)",
-        padding: this.hasPadding ? "12px" : "0px",
-      };
+        height: 'calc(100% - 36px)',
+        padding: this.hasPadding ? '12px' : '0px',
+      }
     },
     tabList() {
       return [
         {
           key: events.DATA_CATALOG_TAB,
-          tab: "数据目录",
+          tab: '数据目录',
         },
         {
           key: events.BOOKMARK_TAB,
-          tab: "收藏夹",
+          tab: '收藏夹',
         },
-      ];
+      ]
     },
   },
   methods: {
     // 获取地图容器元素
     getMaxWidth() {
-      if (!this.maxWidth) return null;
+      if (!this.maxWidth) return null
 
-      const type = typeof this.maxWidth;
-      if (type === "function") {
-        return this.maxWidth();
-      } else if (type === "number") {
-        return this.maxWidth;
+      const type = typeof this.maxWidth
+      if (type === 'function') {
+        return this.maxWidth()
+      } else if (type === 'number') {
+        return this.maxWidth
       }
-      return null;
+      return null
     },
     onPanelLineMove(offset) {
-      this.resizeWidth += offset;
+      this.resizeWidth += offset
       if (this.resizeWidth < 2) {
-        this.resizeWidth = 2;
+        this.resizeWidth = 2
       } else {
-        const maxWidth = this.getMaxWidth();
+        const maxWidth = this.getMaxWidth()
 
         if (maxWidth && this.resizeWidth >= maxWidth) {
-          this.resizeWidth = maxWidth;
+          this.resizeWidth = maxWidth
         }
       }
     },
     // 关闭事件
     onClose() {
-      this.syncedVisible = false;
+      this.syncedVisible = false
     },
     changeTab(val) {
-      eventBus.$emit(val);
+      eventBus.$emit(val)
     },
   },
-};
+}
 </script>
 
 <style lang="scss">

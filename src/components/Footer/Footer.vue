@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { ThemeContentMixin } from "@mapgis/web-app-framework";
+import { ThemeContentMixin } from '@mapgis/web-app-framework'
 
 export default {
-  name: "MpPanSpatialMapFooter",
+  name: 'MpPanSpatialMapExampleFooter',
   mixins: [ThemeContentMixin],
   props: { maxViewHeight: Number },
-};
+}
 </script>
 
 <style lang="less" scoped>

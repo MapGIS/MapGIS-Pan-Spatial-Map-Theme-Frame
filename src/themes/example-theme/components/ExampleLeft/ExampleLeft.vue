@@ -24,19 +24,19 @@
 </template>
 
 <script>
-import { ThemeContentMixin } from "@mapgis/web-app-framework";
-import { mapState } from "vuex";
-import expandImage from "./ico_expand.png";
+import { ThemeContentMixin } from '@mapgis/web-app-framework'
+import { mapState } from 'vuex'
+import expandImage from './ico_expand.png'
 
 export default {
-  name: "MpPanSpatialMapClassicLeftDcd",
+  name: 'MpPanSpatialMapExampleThemeLeft',
   mixins: [ThemeContentMixin],
   props: {
     widgets: {
       type: Array,
       required: false,
       default() {
-        return [];
+        return []
       },
     },
   },
@@ -45,22 +45,22 @@ export default {
       width: 280,
       show: true,
       styleObj: {
-        "background-image": `url(${expandImage})`,
+        'background-image': `url(${expandImage})`,
       },
-    };
+    }
   },
   computed: {
-    ...mapState("setting", { themeMode: (state) => state.theme.mode }),
+    ...mapState('setting', { themeMode: (state) => state.theme.mode }),
   },
   mounted() {
-    this.$emit("update-width");
+    this.$emit('update-width')
   },
   methods: {
     showDataCatalog: function () {
-      this.show = !this.show;
+      this.show = !this.show
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

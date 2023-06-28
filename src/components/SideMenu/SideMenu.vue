@@ -52,7 +52,7 @@ import {
 } from '@mapgis/web-app-framework'
 
 export default {
-  name: 'MpPanSpatialMapSideMenuDcd',
+  name: 'MpPanSpatialMapExampleSideMenu',
   mixins: [ThemeContentMixin],
   props: {
     width: {

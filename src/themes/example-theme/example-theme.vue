@@ -24,7 +24,7 @@
           :max-view-height="maxFooterHeight"
         />
       </mapgis-ui-layout>
-      <mp-pan-spatial-map-side-panel-dcd
+      <mp-pan-spatial-map-example-side-panel
         v-if="maxSidePanelWidth && mapInitialized"
         v-bind="right.panel"
         :widgets="right.widgets"
@@ -54,12 +54,12 @@ import {
   loadConfigs,
 } from '@mapgis/web-app-framework'
 import { mapState } from 'vuex'
-import MpPanSpatialMapSidePanelDcd from '../../components/SidePanel/SidePanel.vue'
+import MpPanSpatialMapExampleSidePanel from '../../components/SidePanel/SidePanel.vue'
 
 export default {
-  name: 'MpPanSpatialMapClassicThemeExample',
+  name: 'MpPanSpatialMapExampleTheme',
   components: {
-    MpPanSpatialMapSidePanelDcd,
+    MpPanSpatialMapExampleSidePanel,
   },
   mixins: [ThemeMixin],
   props: {

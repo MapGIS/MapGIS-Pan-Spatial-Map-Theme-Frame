@@ -24,8 +24,8 @@ export {
   isExternalLayoutElementComponentExist,
 }
 
-export { default as MpPanSpatialMapFooter } from './Footer/Footer.vue'
+export { default as MpPanSpatialMapExampleFooter } from './Footer/Footer.vue'
 
-export { default as MpPanSpatialMapHeaderDcd } from './Header/Header.vue'
-export { default as MpPanSpatialMapSideMenuDcd } from './SideMenu/SideMenu.vue'
-export { default as MpPanSpatialMapToolListButtonDcd } from './ToolbarButton/ToolListButton.vue'
+export { default as MpPanSpatialMapExampleHeader } from './Header/Header.vue'
+export { default as MpPanSpatialMapExampleSideMenu } from './SideMenu/SideMenu.vue'
+export { default as MpPanSpatialMapExampleToolListButton } from './ToolbarButton/ToolListButton.vue'

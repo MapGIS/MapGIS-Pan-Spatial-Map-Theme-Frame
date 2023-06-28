@@ -1,5 +1,5 @@
 <template>
-  <div class="mp-widget-toolbox">
+  <div class="widget-example-toolbox">
     <component
       :is="parseContentComponent('toolbar')"
       ref="toollistContent"
@@ -12,7 +12,7 @@
 import { WidgetMixin } from '@mapgis/web-app-framework'
 
 export default {
-  name: 'MpToolbox',
+  name: 'ExampleToolbox',
   mixins: [WidgetMixin],
   computed: {
     toollist() {
@@ -61,6 +61,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mp-widget-toolbox {
+.widget-example-toolbox {
 }
 </style>

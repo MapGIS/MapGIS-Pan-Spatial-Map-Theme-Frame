@@ -23,7 +23,7 @@
 import { AppMixin } from '@mapgis/web-app-framework'
 
 export default {
-  name: 'MpPanSpatialMapHeaderDcd',
+  name: 'MpPanSpatialMapExampleHeader',
   mixins: [AppMixin],
   props: {
     themeMode: {
