@@ -5,31 +5,34 @@
   "module": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name mapgis-pan-spatial-map-theme-frame src/index.js",
+    "build": "node --max_old_space_size=16196 ./node_modules/@vue/cli-service/bin/vue-cli-service.js build --target lib --name theme  ./src/themes/index.js",
+    "build:debug": "node --max_old_space_size=16196 ./node_modules/@vue/cli-service/bin/vue-cli-service.js build --mode debug --target lib --name theme  ./src/themes/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@mapgis/web-app-framework": "^16.6.0",
+    "@mapgis/web-app-framework": "^16.7.8",
+    "@mapgis/webclient-vue-mapboxgl": "^16.7.5",
+    "@mapgis/webclient-vue-eventbus":"^16.7.5",
+    "copy-webpack-plugin": "5.1.2",
     "core-js": "^3.8.3",
+    "jspdf": "2.5.1",
+    "less": "3.12.2",
+    "less-loader": "^7.0.2",
+    "node-sass": "4.14.1",
+    "sass-loader": "10.1.1",
     "vue": "^2.6.14",
-    "vuex": "^3.4.0",
-    "ant-design-vue": "1.7.2"
+    "vuex": "3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "vue-template-compiler": "^2.6.14",
-    "less": "3.12.2",
-    "less-loader": "7.0.2",
-    "node-sass": "^4.11.0",
-    "sass-loader": "10.1.1",
-    "style-resources-loader": "^1.3.2",
-    "vue-cli-plugin-style-resources-loader": "^0.1.4"
+    "webpack-cli": "^5.1.4"
   },
   "eslintConfig": {
     "root": true,

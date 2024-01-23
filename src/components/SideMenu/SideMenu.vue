@@ -17,7 +17,10 @@
         mode="inline"
         v-model="selectedKeys"
       >
-        <mapgis-ui-menu-item v-for="widget in widgets" :key="widget.id">
+        <mapgis-ui-menu-item
+          v-for="widget in widgetStructureSider"
+          :key="widget.id"
+        >
           <mapgis-ui-icon :icon="getWidgetIcon(widget)" class="icon" />
           <span>{{ getWidgetLabel(widget) }}</span>
         </mapgis-ui-menu-item>
@@ -46,13 +49,13 @@
 
 <script>
 import {
-  ThemeContentMixin,
-  WidgetManager,
   WidgetState,
-} from '@mapgis/web-app-framework'
+  WidgetManager,
+  ThemeContentMixin,
+} from "@mapgis/web-app-framework";
 
 export default {
-  name: 'MpPanSpatialMapExampleSideMenu',
+  name: "MpPanSpatialMapSideMenu1",
   mixins: [ThemeContentMixin],
   props: {
     width: {
@@ -78,30 +81,72 @@ export default {
     themeMode: {
       type: String,
       required: false,
-      default: 'dark',
+      default: "dark",
     },
   },
   data() {
     return {
       collapsedVal: this.collapsed,
       selectedKeys: [],
-    }
+    };
   },
   computed: {
     sideTheme() {
-      return this.themeMode === 'technology' ? 'dark' : this.themeMode
+      return "light";
     },
   },
   methods: {
     onClick({ key }) {
       if (this.selectedKeys[0] === key) {
-        this.selectedKeys = []
+        this.selectedKeys = [];
       }
-
-      const currentWidget = this.widgets.find((widget) => widget.id === key)
+      let widgetStructure;
+      if (this.widgetStructure.length === 0) {
+        widgetStructure = this.widgets;
+      } else {
+        widgetStructure = this.widgetStructure;
+      }
+      const currentWidget = widgetStructure.find((widget) => widget.id === key);
 
       if (currentWidget) {
-        WidgetManager.getInstance().triggerWidgetOpen(currentWidget)
+        let activeWidget;
+        if (currentWidget.children && currentWidget.children.length > 1) {
+          window.MultiChildController.setCurrentTabs(currentWidget.id);
+          activeWidget = this.widgets.find(
+            (widget) =>
+              widget.id === window.MultiChildController.getCurrentTabs().initKey
+          );
+          this.widgets.forEach((widget) => {
+            if (widget.id !== activeWidget.id) {
+              WidgetManager.getInstance().closeWidget(widget);
+            }
+          });
+        } else if (
+          currentWidget.children &&
+          currentWidget.children.length === 1
+        ) {
+          const currentWidgetKey = currentWidget.children[0].id;
+          activeWidget = this.widgets.find(
+            (widget) => widget.id === currentWidgetKey
+          );
+          this.widgets.forEach((widget) => {
+            if (widget.id !== currentWidgetKey) {
+              WidgetManager.getInstance().closeWidget(widget);
+            }
+          });
+        } else {
+          activeWidget = this.widgets.find(
+            (widget) => widget.id === currentWidget.id
+          );
+
+          this.widgets.forEach((widget) => {
+            if (widget.id !== currentWidget.id) {
+              WidgetManager.getInstance().closeWidget(widget);
+            }
+          });
+        }
+
+        WidgetManager.getInstance().triggerWidgetOpen(activeWidget);
       }
     },
     onUpdateWidgetState({ widget, newState }) {
@@ -109,15 +154,15 @@ export default {
         newState == WidgetState.CLOSED &&
         this.selectedKeys[0] === widget.id
       ) {
-        this.selectedKeys = []
+        this.selectedKeys = [];
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss">
-@import '../../index.scss';
+@import "../../themes/classic-theme/style/index.scss";
 .side-menu-wrapper {
   .mapgis-ui-layout-sider-children {
     display: flex;
@@ -142,7 +187,7 @@ export default {
   }
   &.light {
     .side-collapsed-button {
-      border-top: 1px solid $border-color;
+      // border-top: 1px solid $border-color;
     }
   }
   .side-menu {

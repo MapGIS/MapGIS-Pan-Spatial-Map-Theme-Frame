@@ -1,6 +1,51 @@
-export { default as MpPanSpatialMapExampleTheme } from './example-theme/example-theme.vue'
-export { default as MpPanSpatialMapExampleThemeHeader } from './example-theme/components/ExampleHeader/ExampleHeader.vue'
-export { default as MpPanSpatialMapExampleThemeLeft } from './example-theme/components/ExampleLeft/ExampleLeft.vue'
-export { default as MpPanSpatialMapExampleThemeRight } from './example-theme/components/ExampleRight/ExampleRight.vue'
-export { default as MpPanSpatialMapExampleThemeToolList } from './example-theme/components/ExampleToolList/ExampleToolList.vue'
-export { default as ExampleToolbox } from './example-theme/widgets/toolbox/toolbox.vue'
+import {
+  MpPanSpatialMapHeader,
+  MpPanSpatialMapSideMenu,
+  MpPanSpatialMapFooter,
+  MpPanSpatialMapSidePanel,
+  MpPanSpatialMapToolbarButton,
+  MpPanSpatialMapToolbarCard,
+} from '../components'
+
+import { MpPanSpatialMapClassicHeader } from './classic-theme/components/ClassicHeader'
+import { MpPanSpatialMapClassicLeft } from './classic-theme/components/ClassicLeft'
+import { MpPanSpatialMapClassicToolbar } from './classic-theme/components/ClassicToolbar'
+import { MpPanSpatialMapClassicTheme } from './classic-theme'
+
+const components = [
+  MpPanSpatialMapClassicHeader,
+  MpPanSpatialMapClassicLeft,
+  MpPanSpatialMapClassicToolbar,
+  MpPanSpatialMapClassicTheme,
+  MpPanSpatialMapHeader,
+  MpPanSpatialMapSideMenu,
+  MpPanSpatialMapFooter,
+  MpPanSpatialMapSidePanel,
+  MpPanSpatialMapToolbarButton,
+  MpPanSpatialMapToolbarCard,
+]
+
+const install = (Vue, opts = {}) => {
+  components.forEach((component) => {
+    Vue.use(component)
+  })
+
+  if (opts.components) {
+    for (const key in opts.components) {
+      if (Object.hasOwnProperty.call(opts.components, key)) {
+        const component = opts.components[key]
+        Vue.component(key, component)
+      }
+    }
+
+    setExternalLayoutElementComponents(opts.components)
+  }
+}
+
+if (typeof window !== "undefined" && window["MapgisApplicationVueRuntime"]) {
+  install(window["MapgisApplicationVueRuntime"], {});
+}
+
+export default {
+  install,
+}

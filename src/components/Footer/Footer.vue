@@ -6,9 +6,8 @@
 
 <script>
 import { ThemeContentMixin } from '@mapgis/web-app-framework'
-
 export default {
-  name: 'MpPanSpatialMapExampleFooter',
+  name: 'MpPanSpatialMapFooter1',
   mixins: [ThemeContentMixin],
   props: { maxViewHeight: Number },
 }

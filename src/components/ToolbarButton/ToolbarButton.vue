@@ -1,7 +1,7 @@
 <template>
-  <div class="card-command" @click="$emit('click')">
+  <div :class="{ command: true, active: active }" @click="$emit('click')">
     <mapgis-ui-icon :icon="widgetInfo.icon" class="icon" />
-    <div class="label">{{ widgetInfo.label }}</div>
+    <span class="label">{{ widgetInfo.label }}</span>
   </div>
 </template>
 
@@ -9,29 +9,30 @@
 import { WidgetInfoMixin } from "@mapgis/web-app-framework";
 
 export default {
-  name: "MpPanSpatialMapToolbarCard1",
+  name: "MpPanSpatialMapToolbarButton1",
   mixins: [WidgetInfoMixin],
+  props: {
+    active: { type: Boolean, default: false },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.card-command {
-  // color: $text-color;
+.command {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 4px 0;
+  height: 32px;
   cursor: pointer;
   .icon {
     font-size: 16px;
+    margin-right: 8px;
+    height: 16px;
   }
   .label {
     font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
-  &:hover {
+  &:hover,
+  &.active {
     // color: $primary-color;
   }
 }
