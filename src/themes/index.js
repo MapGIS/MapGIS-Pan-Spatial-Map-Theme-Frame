@@ -27,7 +27,16 @@ const components = [
 
 const install = (Vue, opts = {}) => {
   components.forEach((component) => {
-    Vue.use(component)
+    // 判断是否已经注册过，已经注册过则不再注册
+    if (
+      !(
+        typeof Vue.component(
+          (component.options && component.options.name) || component.name
+        ) === 'function'
+      )
+    ) {
+      Vue.use(component)
+    }
   })
 
   if (opts.components) {
@@ -42,8 +51,8 @@ const install = (Vue, opts = {}) => {
   }
 }
 
-if (typeof window !== "undefined" && window["MapgisApplicationVueRuntime"]) {
-  install(window["MapgisApplicationVueRuntime"], {});
+if (typeof window !== 'undefined' && window['MapgisApplicationVueRuntime']) {
+  install(window['MapgisApplicationVueRuntime'], {})
 }
 
 export default {
