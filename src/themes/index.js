@@ -27,17 +27,13 @@ const components = [
 
 const install = (Vue, opts = {}) => {
   components.forEach((component) => {
-    // 判断是否已经注册过，已经注册过则不再注册
-    if (
-      !(
-        typeof Vue.component(
-          (component.options && component.options.name) || component.name
-        ) === 'function'
-      )
-    ) {
+    const registerName = component.options
+      ? component.options.name
+      : component.name
+    if (registerName in Vue.options.components) {
+      console.warn(`发现同名组件${registerName},已取消该组件注册`)
+    } else {
       Vue.use(component)
-    }else{
-      console.warn(`组件${(component.options && component.options.name) || component.name}已注册`)
     }
   })
 
