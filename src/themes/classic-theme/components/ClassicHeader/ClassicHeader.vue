@@ -76,7 +76,6 @@ export default {
     }
   },
   computed: {
-    // ...mapState("setting", { themeMode: (state) => state.theme.mode }),
     themeMode() {
       return 'light'
     },

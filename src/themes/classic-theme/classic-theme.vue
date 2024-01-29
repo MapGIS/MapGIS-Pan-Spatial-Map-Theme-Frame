@@ -61,16 +61,16 @@ import {
   DataFlowList,
   baseConfigInstance,
   ThemeMixin,
-} from "@mapgis/web-app-framework";
+} from '@mapgis/web-app-framework'
 // import { mapState } from 'vuex'
 import {
   MapgisEventBusOneMapMixin,
   events,
-} from "@mapgis/webclient-vue-eventbus";
-import MpPanSpatialMapSidePanel from "../../components/SidePanel/SidePanel.vue";
+} from '@mapgis/webclient-vue-eventbus'
+import MpPanSpatialMapSidePanel from '../../components/SidePanel/SidePanel.vue'
 
 export default {
-  name: "MpPanSpatialMapClassicTheme1",
+  name: 'MpPanSpatialMapClassicTheme1',
   components: {
     MpPanSpatialMapSidePanel,
   },
@@ -87,51 +87,47 @@ export default {
       showSetting: false,
       configInitialized: false,
       layerId: Number((Math.random() * 100000000).toFixed(0)), // 唯一标识
-      layerTitle: "视频投放", // 写成固定值，对应投放管理中下拉框中的名称
+      layerTitle: '视频投放', // 写成固定值，对应投放管理中下拉框中的名称
       popupOverlayInstance: null,
-    };
+    }
   },
   computed: {
     // ...mapState('setting', ['hideSetting']),
     publicPath() {
-      return this.application.publicPath;
+      return this.application.publicPath
     },
     dataFlowList() {
-      return DataFlowList;
+      return DataFlowList
     },
     headerContentComponent() {
-      return this.parseContentComponent("header");
+      return this.parseContentComponent('header')
     },
     leftContentComponent() {
-      return this.parseContentComponent("left");
+      return this.parseContentComponent('left')
     },
     toolbarContentComponent() {
-      return this.parseContentComponent("toolbar");
+      return this.parseContentComponent('toolbar')
     },
     footerContentComponent() {
-      return this.parseContentComponent("footer");
+      return this.parseContentComponent('footer')
     },
     popupShowType() {
-      console.log(
-        "baseConfigInstance.config++++++++++++++++++++++++++++",
-        baseConfigInstance.config
-      );
-      return baseConfigInstance.config.popupShowType;
+      return baseConfigInstance.config.popupShowType
     },
     dataStoreIp() {
-      return baseConfigInstance.config.DataStoreIp;
+      return baseConfigInstance.config.DataStoreIp
     },
     dataStorePort() {
-      return baseConfigInstance.config.DataStorePort;
+      return baseConfigInstance.config.DataStorePort
     },
     minimumLevel() {
-      return baseConfigInstance.config.beginZoom || 0;
+      return baseConfigInstance.config.beginZoom || 0
     },
     maximumLevel() {
-      return baseConfigInstance.config.endZoom || 22;
+      return baseConfigInstance.config.endZoom || 22
     },
     mapOptions() {
-      const lnglat = baseConfigInstance.config.center.split(",");
+      const lnglat = baseConfigInstance.config.center.split(',')
       /**
        * 修改说明：由于mapboxgl只支持在初始化的时候设置符号库，中途不支持修改。
        * mapboxgl在初始化的时候，还未加载矢量瓦片，无法获取要加载显示的矢量瓦片对应的符号库地址，可能会导致加载的矢量瓦片显示异常（符号不显示）
@@ -146,12 +142,12 @@ export default {
        * 修改人：龚跃健
        * 修改日期：2021/12/30
        */
-      const { location } = window;
-      let sprite = `${location.protocol}//${location.host}${this.publicPath}sprite/sprite`;
-      const glyphs = `${location.protocol}//${location.host}${this.publicPath}fonts/{fontstack}/{range}.pbf`;
-      const { ip, port, spriteUrl } = baseConfigInstance.config;
+      const { location } = window
+      let sprite = `${location.protocol}//${location.host}${this.publicPath}sprite/sprite`
+      const glyphs = `${location.protocol}//${location.host}${this.publicPath}fonts/{fontstack}/{range}.pbf`
+      const { ip, port, spriteUrl } = baseConfigInstance.config
       if (spriteUrl && spriteUrl.length > 0) {
-        sprite = spriteUrl;
+        sprite = spriteUrl
       }
       return {
         center: { lng: Number(lnglat[0]), lat: Number(lnglat[1]) },
@@ -160,42 +156,40 @@ export default {
           sprite,
           glyphs,
         },
-      };
+      }
     },
   },
   mounted() {
-    this.calcMaxFooterHeight();
-    this.calcMaxSidePanelWidth();
-    this.watchWindowSize();
-    this.emitEvents(events.OPEN_DATA_BOOKMARK_EVENT, 111, 222);
-    this.emitEvents(events.OPEN_DATA_BOOKMARK_EVENT, 111, 222);
+    this.calcMaxFooterHeight()
+    this.calcMaxSidePanelWidth()
+    this.watchWindowSize()
   },
   async created() {
-    await loadConfigs();
-    this.configInitialized = true;
+    await loadConfigs()
+    this.configInitialized = true
   },
   beforeDestroy() {
-    window.onresize = null;
+    window.onresize = null
   },
   methods: {
     calcMaxFooterHeight() {
       this.maxFooterHeight =
-        window.innerHeight - this.$refs.headerContent.$el.offsetHeight;
+        window.innerHeight - this.$refs.headerContent.$el.offsetHeight
     },
     calcMaxSidePanelWidth() {
       this.maxSidePanelWidth =
         this.$refs.bodyContent.$el.clientWidth -
-        this.$refs.leftContent.$el.clientWidth;
+        this.$refs.leftContent.$el.clientWidth
     },
     watchWindowSize() {
       window.onresize = () => {
-        this.calcMaxFooterHeight();
-        this.calcMaxSidePanelWidth();
-      };
+        this.calcMaxFooterHeight()
+        this.calcMaxSidePanelWidth()
+      }
     },
     handleProjectScreen(file) {
       if (!this.getProjectorStatus(file.name)) {
-        const { layerId, layerTitle } = this;
+        const { layerId, layerTitle } = this
         const {
           vFOV,
           orientationHeading,
@@ -205,53 +199,53 @@ export default {
           positionZ,
           hFOV,
           orientationPitch,
-        } = file;
+        } = file
         const cameraPosition = {
           x: positionX,
           y: positionY,
           z: positionZ,
-        };
+        }
         const Orientation = {
           heading: orientationHeading,
           pitch: orientationPitch,
           roll: orientationRoll,
-        };
+        }
 
         ProjectorManager.addProjector(
           layerId, // this.exhibition.id,
           layerTitle, // this.exhibition.name,
           file.name,
           file.url,
-          "video",
+          'video',
           file.type,
           file.url,
-          "",
-          "",
+          '',
+          '',
           true,
           cameraPosition,
           Orientation,
           hFOV,
           vFOV
-        );
-        this.setProjectorStatus(file.name, true);
+        )
+        this.setProjectorStatus(file.name, true)
       } else {
-        this.setProjectorStatus(file.name);
+        this.setProjectorStatus(file.name)
       }
     },
     getProjectorStatus(projectorId) {
-      const { layerId } = this;
-      return ProjectorManager.getProjectorStatus(projectorId, layerId);
+      const { layerId } = this
+      return ProjectorManager.getProjectorStatus(projectorId, layerId)
     },
     setProjectorStatus(projectorId, isProjected = false) {
-      const { layerId } = this;
+      const { layerId } = this
       return ProjectorManager.setProjectorStatus(
         projectorId,
         layerId,
         isProjected
-      );
+      )
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

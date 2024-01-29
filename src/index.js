@@ -1,5 +1,4 @@
 import * as commonComponents from './components'
-import { setExternalLayoutElementComponents } from './components/utils'
 import * as themeComponents from './themes'
 
 const components = { ...commonComponents, ...themeComponents }
@@ -22,8 +21,6 @@ const install = (Vue, opts = {}) => {
         Vue.component(key, component)
       }
     }
-
-    setExternalLayoutElementComponents(opts.components)
   }
 }
 

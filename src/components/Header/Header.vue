@@ -22,22 +22,20 @@
 </template>
 
 <script>
-import { AppMixin } from "@mapgis/web-app-framework";
-// import { request } from '../../../../pan-spatial-map-framework/src/utils/request'
-// import axios from '../../../../../node_modules/axios'
+import { AppMixin } from '@mapgis/web-app-framework'
 
 export default {
-  name: "MpPanSpatialMapHeader1",
+  name: 'MpPanSpatialMapHeader1',
   mixins: [AppMixin],
   props: {
     themeMode: {
       type: String,
       required: false,
-      default: "dark",
+      default: 'dark',
     },
   },
   data() {
-    return {};
+    return {}
   },
   computed: {
     // dark主题下header主色调与light不同
@@ -47,32 +45,32 @@ export default {
           if (this.application.theme.manifest) {
             const style = this.application.theme.manifest.styles.find(
               (item) => {
-                return item.name === this.application.theme.style;
+                return item.name === this.application.theme.style
               }
-            );
+            )
 
             if (style) {
               return {
                 color: style.color,
                 theme: style.theme,
-              };
+              }
             }
           }
         } else if (this.application.theme.customStyle) {
-          return this.application.theme.customStyle;
+          return this.application.theme.customStyle
         }
       }
-      return { theme: "dark", color: "#1890ff" };
+      return { theme: 'dark', color: '#1890ff' }
     },
     publicPath() {
-      return this.application.publicPath;
+      return this.application.publicPath
     },
     imgSrc() {
-      return this.publicPath + "widget/top-bg.png";
+      return this.publicPath + 'widget/top-bg.png'
     },
   },
   methods: {},
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -134,7 +132,6 @@ export default {
 </style>
 
 <style lang="scss">
-
 .header-wrapper {
   .header-wide {
     .header-right-normal {
