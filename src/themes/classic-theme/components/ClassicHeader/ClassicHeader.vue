@@ -60,12 +60,12 @@
 
 <script>
 // import { mapState } from 'vuex'
-import { WidgetManager, ThemeContentMixin } from "@mapgis/web-app-framework";
-import MpPanSpatialMapHeader from "../../../../components/Header/Header.vue";
-import { isExternalLayoutElementComponentExist } from "../../../../components";
+import { WidgetManager, ThemeContentMixin } from '@mapgis/web-app-framework'
+import MpPanSpatialMapHeader from '../../../../components/Header/Header.vue'
+import { isExternalLayoutElementComponentExist } from '../../../../components/utils.js'
 
 export default {
-  name: "MpPanSpatialMapClassicHeader1",
+  name: 'MpPanSpatialMapClassicHeader1',
   components: {
     MpPanSpatialMapHeader,
   },
@@ -73,44 +73,44 @@ export default {
   data() {
     return {
       aboutWindowVisible: false,
-    };
+    }
   },
   computed: {
     // ...mapState("setting", { themeMode: (state) => state.theme.mode }),
     themeMode() {
-      return "light";
+      return 'light'
     },
     menuTheme() {
-      return this.themeMode === "technology" ? "dark" : this.themeMode;
+      return this.themeMode === 'technology' ? 'dark' : this.themeMode
     },
     isHeaderAvatarComponentExist() {
       return (
-        isExternalLayoutElementComponentExist("MpPanSpatialMapHeaderAvatar") ||
+        isExternalLayoutElementComponentExist('MpPanSpatialMapHeaderAvatar') ||
         true
-      );
+      )
     },
     isAboutComponentExist() {
       return (
-        isExternalLayoutElementComponentExist("MpPanSpatialMapAbout") || true
-      );
+        isExternalLayoutElementComponentExist('MpPanSpatialMapAbout') || true
+      )
     },
     currentWidgets() {
-      return this.is2DMapMode ? this.widgets2d : this.widgets3d;
+      return this.is2DMapMode ? this.widgets2d : this.widgets3d
     },
   },
   methods: {
     onSelect({ key }) {
       WidgetManager.getInstance().triggerWidgetOpen(
         this.widgets.find((val) => {
-          return val.id === key;
+          return val.id === key
         })
-      );
+      )
     },
     onShowAboutInfo() {
-      this.aboutWindowVisible = true;
+      this.aboutWindowVisible = true
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
