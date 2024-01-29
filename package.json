@@ -5,14 +5,14 @@
   "module": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "node --max_old_space_size=16196 ./node_modules/@vue/cli-service/bin/vue-cli-service.js build --target lib --name theme  ./src/themes/index.js",
-    "build:debug": "node --max_old_space_size=16196 ./node_modules/@vue/cli-service/bin/vue-cli-service.js build --mode debug --target lib --name theme  ./src/themes/index.js",
+    "build": "node --max_old_space_size=16196 ./node_modules/@vue/cli-service/bin/vue-cli-service.js build --target lib --name theme  ./src/index.js",
+    "build:debug": "node --max_old_space_size=16196 ./node_modules/@vue/cli-service/bin/vue-cli-service.js build --mode debug --target lib --name theme  ./src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mapgis/web-app-framework": "^16.7.8",
     "@mapgis/webclient-vue-mapboxgl": "^16.7.5",
-    "@mapgis/webclient-vue-eventbus":"^16.7.5",
+    "@mapgis/webclient-vue-eventbus": "^16.7.5",
     "copy-webpack-plugin": "5.1.2",
     "core-js": "^3.8.3",
     "jspdf": "2.5.1",
