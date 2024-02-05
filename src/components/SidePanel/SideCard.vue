@@ -15,6 +15,7 @@
   >
     <template v-if="!hasTabs">
       <component
+        v-if="!needLoadScript"
         :is="getComponent(widget)"
         :widget="getWidget(widget)"
         @update-widget-state="$emit('update-widget-state', $event)"
@@ -31,6 +32,7 @@
       /> -->
       <keep-alive>
         <component
+          v-if="!needLoadScript"
           :is="getActiveComponent"
           :key="getActiveKey"
           :widget="getActiveWidget"
@@ -42,11 +44,16 @@
 </template>
 
 <script>
-import { WidgetManager, WidgetInfoMixin } from "@mapgis/web-app-framework";
-import MpPanSpatialMapSideWindow from "./SideWindow.vue";
+import {
+  WidgetInfoMixin,
+  WidgetManager,
+  MultiChildController,
+  AppLoadScript,
+} from '@mapgis/web-app-framework'
+import MpPanSpatialMapSideWindow from './SideWindow.vue'
 
 export default {
-  name: "MpPanSpatialMapSideCard",
+  name: 'MpPanSpatialMapSideCard',
   components: { MpPanSpatialMapSideWindow },
   mixins: [WidgetInfoMixin],
   props: {
@@ -55,100 +62,111 @@ export default {
   },
   data() {
     return {
-      multiChildController: window.MultiChildController,
+      multiChildController: MultiChildController,
       activeWidget: null,
-    };
+      needLoadScript: true,
+    }
   },
   computed: {
     getActiveWidget() {
-      return this.activeWidget || null;
+      return this.activeWidget || null
     },
     getActiveComponent() {
-      return this.activeWidget ? this.activeWidget.manifest.component : "";
+      return this.activeWidget ? this.activeWidget.manifest.component : ''
     },
     getActiveKey() {
-      return this.activeWidget ? this.activeWidget.id : "";
+      return this.activeWidget ? this.activeWidget.id : ''
     },
     getWidgetTitle() {
       return (widgetInfo) => {
         if (this.widget.children) {
-          return this.widget.children[0].manifest.name || "";
+          return this.widget.children[0].manifest.name || ''
         } else {
-          return widgetInfo.label;
+          return widgetInfo.label
         }
-      };
+      }
     },
     getWidget() {
       return (widget) => {
-        return widget.children ? widget.children[0] : widget;
-      };
+        return widget.children ? widget.children[0] : widget
+      }
     },
     getComponent() {
       return (widget) => {
         return widget.children
           ? widget.children[0].manifest.component
-          : widget.manifest.component;
-      };
+          : widget.manifest.component
+      }
     },
     showComponent() {
       return (widgetChildren) => {
-        return widgetChildren.id === this.multiChildController.getActiveId();
-      };
+        return widgetChildren.id === this.multiChildController.getActiveId()
+      }
     },
     hasTabs() {
-      return this.widget.children && this.widget.children.length > 1;
+      return this.widget.children && this.widget.children.length > 1
     },
     isFullScreen() {
       // 若有chilren则默认其中第一个微件的配置,下同
       return (widgetInfo) => {
         return this.hasTabs
-          ? this.widget.children[0].manifest.properties.windowSize === "max"
-          : widgetInfo.properties.windowSize === "max";
-      };
+          ? this.widget.children[0].manifest.properties.windowSize === 'max'
+          : widgetInfo.properties.windowSize === 'max'
+      }
     },
     getWidth() {
       return (widgetInfo) => {
         return this.hasTabs
           ? this.widget.children[0].manifest.properties.customWidth
-          : widgetInfo.properties.customWidth;
-      };
+          : widgetInfo.properties.customWidth
+      }
     },
     hasPadding() {
       return (widgetInfo) => {
         return this.hasTabs
           ? this.widget.children[0].manifest.properties.hasPadding
-          : widgetInfo.properties.hasPadding;
-      };
+          : widgetInfo.properties.hasPadding
+      }
     },
     getTabs() {
-      const tabs = [];
+      const tabs = []
       if (this.hasTabs) {
         this.widget.children.forEach((item) => {
           const data = {
             key: item.id,
             tab: item.manifest.name,
-          };
-          tabs.push(data);
-        });
+          }
+          tabs.push(data)
+        })
       }
-      return tabs;
+      return tabs
     },
     showActiveWidget() {
       return (widget) => {
-        return WidgetManager.getInstance().isWidgetActive(widget);
-      };
+        return WidgetManager.getInstance().isWidgetActive(widget)
+      }
     },
   },
   watch: {
     visible(val) {
       if (val) {
-        this.activeWidget = null;
+        this.activeWidget = null
         this.$nextTick(() => {
-          window.MultiChildController.getCurrentFolderId() === this.widget.id &&
-            this.changeTab(window.MultiChildController.getActiveId());
-        });
+          MultiChildController.getCurrentFolderId() === this.widget.id &&
+            this.changeTab(MultiChildController.getActiveId())
+        })
       }
     },
+  },
+  created() {
+    AppLoadScript.loadWidgetScript(this.widgetInfo, this.appAssetsUrl)
+      .then(() => {
+        this.needLoadScript = false
+      })
+      .catch((e) => {
+        console.warn(`加载${this.widgetInfo.uri}所需的脚本文件失败`)
+        this.needLoadScript = false
+      })
   },
   mounted() {
     if (
@@ -156,24 +174,24 @@ export default {
       this.widget.children &&
       this.widget.children.length > 1
     ) {
-      this.activeWidget = this.widget.children[0];
+      this.activeWidget = this.widget.children[0]
     }
   },
   methods: {
     onUpdateVisible(value) {
-      this.$emit("update:visible", value);
+      this.$emit('update:visible', value)
     },
 
     changeTab(val) {
-      const widget = this.widget.children.find((item) => item.id === val);
-      this.activeWidget = widget;
+      const widget = this.widget.children.find((item) => item.id === val)
+      this.activeWidget = widget
       if (widget) {
-        WidgetManager.getInstance().operateWidget(this.widget.children, val);
-        window.MultiChildController.setActiveId(widget.id);
+        WidgetManager.getInstance().operateWidget(this.widget.children, val)
+        MultiChildController.setActiveId(widget.id)
       }
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped></style>
