@@ -1,0 +1,16 @@
+<template>
+  <mapgis-ui-layout style="height: 100%">
+    <mapgis-ui-layout-header>Header</mapgis-ui-layout-header>
+    <mapgis-ui-layout>
+      <mapgis-ui-layout-sider>Sider</mapgis-ui-layout-sider>
+      <mapgis-ui-layout-content>Content</mapgis-ui-layout-content>
+    </mapgis-ui-layout>
+    <mapgis-ui-layout-footer>Footer</mapgis-ui-layout-footer>
+  </mapgis-ui-layout>
+</template>
+
+<script>
+export default {
+  name: '{{themeName}}',
+}
+</script>

@@ -1,51 +1,22 @@
-import {
-  setExternalLayoutElementComponents,
-  MpPanSpatialMapExampleFooter,
-  MpPanSpatialMapExampleHeader,
-  MpPanSpatialMapExampleSideMenu,
-  MpPanSpatialMapExampleToolListButton,
-} from './components'
+import * as commonComponents from './components'
+import * as themeComponents from './themes'
 
-import {
-  MpPanSpatialMapExampleTheme,
-  MpPanSpatialMapExampleThemeHeader,
-  MpPanSpatialMapExampleThemeLeft,
-  MpPanSpatialMapExampleThemeRight,
-  MpPanSpatialMapExampleThemeToolList,
-  ExampleToolbox,
-} from './themes'
-
-const components = [
-  MpPanSpatialMapExampleFooter,
-  MpPanSpatialMapExampleHeader,
-  MpPanSpatialMapExampleSideMenu,
-  MpPanSpatialMapExampleToolListButton,
-  MpPanSpatialMapExampleTheme,
-  MpPanSpatialMapExampleThemeHeader,
-  MpPanSpatialMapExampleThemeLeft,
-  MpPanSpatialMapExampleThemeRight,
-  MpPanSpatialMapExampleThemeToolList,
-  ExampleToolbox,
-]
+const components = { ...commonComponents, ...themeComponents }
 
 const install = (Vue, opts = {}) => {
-  components.forEach((component) => {
-    Vue.component(
-      (component.options && component.options.name) || component.name,
-      component
-    )
-  })
-
-  if (opts.components) {
-    for (const key in opts.components) {
-      if (Object.hasOwnProperty.call(opts.components, key)) {
-        const component = opts.components[key]
-        Vue.component(key, component)
-      }
+  for (const name in components) {
+    const com = components[name]
+    const registerName = com.options ? com.options.name : com.name
+    if (registerName in Vue.options.components) {
+      console.log(`发现同名组件[${registerName}],已取消该组件的注册`)
+    } else {
+      Vue.use(com)
     }
-
-    setExternalLayoutElementComponents(opts.components)
   }
+}
+
+if (typeof window !== 'undefined' && window['MapgisApplicationVueRuntime']) {
+  install(window['MapgisApplicationVueRuntime'], {})
 }
 
 export default {

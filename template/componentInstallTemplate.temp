@@ -1,0 +1,10 @@
+import { default as {{themeName}} } from "./{{fileName}}.vue";
+
+{{themeName}}.install = (Vue) => {
+  Vue.component(
+    ({{themeName}}.options && {{themeName}}.options.name) || {{themeName}}.name,
+    {{themeName}}
+  );
+};
+
+export { {{themeName}} };
