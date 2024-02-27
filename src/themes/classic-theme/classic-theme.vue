@@ -63,10 +63,7 @@ import {
   ThemeMixin,
 } from '@mapgis/web-app-framework'
 // import { mapState } from 'vuex'
-import {
-  MapgisEventBusOneMapMixin,
-  events,
-} from '@mapgis/webclient-vue-eventbus'
+
 import MpPanSpatialMapSidePanel from '../../components/SidePanel/SidePanel.vue'
 
 export default {
