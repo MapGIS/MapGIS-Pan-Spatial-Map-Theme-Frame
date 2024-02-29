@@ -71,7 +71,7 @@ export default {
   components: {
     MpPanSpatialMapSidePanel,
   },
-  mixins: [ThemeMixin, MapgisEventBusOneMapMixin],
+  mixins: [ThemeMixin],
   props: {
     header: Object,
     toolbar: Object,
